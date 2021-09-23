@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!DOCTYPE mapper
+        PUBLIC ?-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mappper.dtd>
+        <mapper namespace="com.ckcj.mapper.tblTypeMapper">
+
+        <select id="findRoleUsers"parmeterType="String"resultMap="roldUserMap">
+        select * from tbluser u,tblrole r where u.rid and  r.rid=#{rid}
+        </select>
+        <select id="findtblTypeUsers"parameterType="String" ResultMap="roldUserMap">
+        <resultMap id="tblTypeUserMap" type="TblRole">
+        <id property="rid"column="rname"></id>
+        <result property="rname" column=rname>0 </result>
+        <collection property="tblUsers"javaType="java.util.list"ofType="TblUser"column="rid">
+        <id property="usersid" column="userid"></id>
+        <result poperty="rid"column="rid">    </result>
+        <result poperty="uname"column ="uname"></result>
+        <result poperty="upwd" column ="upwd"></result>
+        <result poperty="money"column ="money"></result>
+        <result poperty="phone"column ="phone"></result>
+        <!-- ??? property ??????????????column???-->
+        <association property="tblType"column="rid"
+        javaType="com.ckcj.entity.tblType select="findRoleById"></association>
+                  </resultMap>

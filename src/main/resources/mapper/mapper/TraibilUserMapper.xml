@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE mapper PUBLIC ?-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mappper.dtd>
+<mapper namespace="com.ckcj.mapper.TblUserMapper">
+        <mapper namespace="aa">
+            <insert id="addTblUser" parmeterType="com.ckcj.entity.Tbluser">
+        insert into tblUser (rid,uname,upwd,money,phone) values (#{rid},#{uname},#{upwd},#{money},#{phone}
+            </insert>
+        </mapper>
+            <delete id="delTblUser" parmeterType="java.lang.String">
+                   delete  from  tbluser  where  userid=#{uid}
+        </delete>
+
+          <update id="updateTblUser" parmeterType="java.util.Map">
+                  updete tbluser set upwd=#{upwd}
+          <!-- <if test="uname!=null and uname!=''">-->
+          <!--,uname=#{unme}-->
+          <!--,</if>-->
+                where userid=#{userid}
+        </update>
+        <select id="findTbluser" resultType="com.ckcj.entity.Tbluser" parmmeterType="java.lang.String"
+           select*from tblUser where uname like cancat??%?, #{uname},"%")
+        <where>
+        <if test="uname!=null and uname!=''">
+           and uname like concat("%",#{uname},"%")
+        </if>
+        <if test="miny!=null ">
+           and money<![CDATA[>=]]>#{miny}
+        </if>
+        <if test= "maxy!=null ">
+           and money<![CDATA[<=]]>#{maxy}limit  #{pageNo}?2
+        </if>
+        </where>
+           limit #{pageNo},#{pageSize}
+        </select>
+
+<select id="findTbluserById" resultType="com.ckcj.entity.Tbluser"parameterType="java.util.Map?>
+        select*from tbluser where uname=#{uname} and upwd=#{upwd}
+        </select>
+
+<delete id="delTbluser" resultType="com.ckcj.entity.Tbluser"parameterType="java.util.list">
+        delete from tbluser where userid in(6,7,8)
+</delete>
+</mapper>
+        <delete id="deleteMTbluser"parameterType="java.util.list">
+        delete from tblUser where userid in?6.7.8?
+        <foreach collection="list"Item="userid"Serparator=","open="("close")">
+           #{userid}
+           </foreach>
+        </delete>
+        <insert id=addMTbluser"parameterType="java.util.list">
+             insert into tblUser(rid,uname,upwd,money,Phone)values
+             <foreach collection="list"item="tbluser" separator=",">
+        (#{tbluser.rid},#{tbluser.uname},{#tbluser.upwd},{#tbluser.money},{#tbluser.Phone},)
+        </foreach>
+        </insert>
+        <!--????-->
+        <select id="finduserRole"parametertype="java.lang.String" resultMap="userMap">
+          select*from tbluser where usersid=#{userid}
+
+        </select>
+        <select id="finduserRole"resulttype="com.ckcj.String" resultMap="userMap">
+          select*from tbluser where usersid=#{userId}
+        </select>
+
+        </mapper>
+          select id="findRoleByid" resultType=com.ckcj.entity.Tblrole" paramterType="java.lang.Integer">
+          select*from tblRole where rid =#{rid}
+        </select>
+         <!--resultMap ???????>
+        <resultMap id="userMap" type=com.ckcj.entity.Tbluser">
+        <id property="userid"column="userid"></id>
+        <result property="userid"column="userid"></result>
+        <result property="uname"column="uname"></result>
+        <result property="upwd"column="upwd"></result>
+        <result property="money"column="money"></result>
+        <result property>
+<!-- ??? property ??????????????column???-->
+        <associlation property="tblrole"column="rid"javaType="com.ckcj.entity.Tblrole"select="findRoleById">
+        </association>
+        </resultMap>
+
+               <!--???? 1??-->
+        <select id="findUserRole2"parameterType="String" result="user" >
+                select*from tbluser u,tblrole r where u.rid=r.rid and u.userrid=#{userid}
+        </select>
+
+        </mappers>
+                <foreach collection="list"Item="tbluser" separator="">

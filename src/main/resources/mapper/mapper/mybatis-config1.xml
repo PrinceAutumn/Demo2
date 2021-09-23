@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configulation
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd>
+        <configulation>
+        <typeAliases>
+        <pakage name="com.ckcj.entity"/>
+        </typeAliases>
+        <environments defualt="enviroment01">
+        <environments id="enviroment01">
+        <transactionManager type="JDBC"></transactionManager>
+        <dataSource type="POOLED">
+        <property name="driver"value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url"value="jdbc.mysql://localhost:3306/docys?useSSL=ture&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;ServerTime"/>
+        <property name="username" value="root"/>
+        <property name="password" value="123456"/>
+        </dataSource>
+        </environment>
+        </enviroments>
+        </configulation>
+        <!--将SQl进行加载-->
+        <typeAliases>
+        <packages>
+        <package name="com.ckcj.entity"/>
+        </packages>
+        </typeAliases>
+   <mappers>
+        <mapper resource="mapper/TblUsermapper.xml"></mapper>
+        <mapper resource="mapper/TblRolemapper.xml"></mapper>
+        </mappers>
+    <!-- Invoke 'Generate' action to add tags or functions -->
+
+</configuration>
